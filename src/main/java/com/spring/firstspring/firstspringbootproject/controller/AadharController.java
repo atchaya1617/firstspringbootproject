@@ -41,9 +41,13 @@ public class AadharController {
 	
 	@PutMapping
 	public ResponseStructure<AadharDto>  updateAadhar(@RequestBody AadharDto aadhar, @RequestParam int id) {
-		return service.updateAadhar(aadhar, id);
+		try {
+			return service.updateAadhar(aadhar, id);
+		}catch (Exception error){
+			return new ResponseStructure<>();
+		}
 	}
-	
+
 	@GetMapping("getall")
 	public ResponseStructure<List<AadharDto>> getallAadhars(){
 		return service.getall();
