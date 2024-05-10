@@ -1,6 +1,7 @@
 package com.spring.firstspring.firstspringbootproject.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -65,7 +66,7 @@ public class AadharService {
 	public ResponseStructure<List<AadharDto>> getall() {
 		ResponseStructure<List<AadharDto>> structure = new ResponseStructure<>();
 
-		structure.setData(dao.getalladhar());
+		structure.setData(Optional.ofNullable(dao.getalladhar()).orElse(null));
 		structure.setMessage("aadhar found with the given id");
 		structure.setStatus(HttpStatus.FOUND.value());
 		return structure;
